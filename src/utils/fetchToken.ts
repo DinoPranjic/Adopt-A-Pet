@@ -1,4 +1,4 @@
-import { CLIENT_ID, CLIENT_SECRET } from "./secrets";
+import { CLIENT_ID, CLIENT_SECRET } from "../../secrets";
 
 const fetchToken = async (url: string) => {
   const params = new URLSearchParams();
@@ -10,6 +10,7 @@ const fetchToken = async (url: string) => {
     method: "POST",
     body: params
   }).then((res) => {
+    console.log(res);
     return res.json();
   }).catch((err) => {
     console.log(err);

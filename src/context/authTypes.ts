@@ -4,7 +4,7 @@ export interface IAuthContext {
   authState: {
     authToken: string
   };
-  authAction: {
+  authActions: {
     setAuthToken: Dispatch<SetStateAction<string>>
   };
 };

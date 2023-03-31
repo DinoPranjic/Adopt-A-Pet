@@ -1,12 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { fetchToken } from './utils/fetchToken';
+import { useEffect } from 'react';
+import { tokenUrl } from './constants';
 
-function App() {
+const App = () => {
+
+const getToken = async () => {
+  const token = await fetchToken(tokenUrl);
+
+  console.log(token.access_token); 
+}
+
+useEffect(() => {
+  getToken();
+}, [])
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

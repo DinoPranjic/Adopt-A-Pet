@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 import { useAuthContext } from "../context/authContext";
 
-const fetchAnimals = async (postalCode: string, token: string) => {
+const fetchAnimals = async (postalCode: string, token: string, distance: string) => {
   const petResults = await fetch(
-    `https://api.petfinder.com/v2/animals?location=${postalCode}&distance=20&country=CA`,
+    `https://api.petfinder.com/v2/animals?location=${postalCode}&distance=${distance}&country=CA`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -15,7 +15,7 @@ const fetchAnimals = async (postalCode: string, token: string) => {
       console.log(err);
     })
 
-    console.log(petResults);
+    console.log(petResults.animals);
 }
 
 export {

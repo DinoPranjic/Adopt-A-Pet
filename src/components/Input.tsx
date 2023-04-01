@@ -22,10 +22,12 @@ const InputButton = styled.button`
   
 `
 
+
 const options = [
-  { value: '50', label: '50km' },
-  { value: '100', label: '100km' },
-  { value: '250', label: '250km' }
+  { value: '31', label: '50km' },
+  { value: '62', label: '100km' },
+  { value: '155', label: '250km' }
+  //actual values are in miles
 ];
 
 const Input = () => {
@@ -42,6 +44,7 @@ const Input = () => {
     if (option) {
       setDistance(option)
     }
+    //must check if option exists first, can't be null to set state
   };
 
   useEffect(() => {
@@ -57,7 +60,7 @@ const Input = () => {
       </InputField>
       <Select options={options} defaultValue={options[0]} onChange={handleSelectChange}/>
       <InputButton
-        onClick={() => fetchAnimals(postalCode, authState.authToken)}
+        onClick={() => fetchAnimals(postalCode, authState.authToken, distance.value)}
       >
         Go!
       </InputButton>

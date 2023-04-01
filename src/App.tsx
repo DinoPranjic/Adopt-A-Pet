@@ -5,24 +5,26 @@ import { tokenUrl } from './constants';
 import { AuthProvider } from './context/authContext';
 import { useAuthContext } from './context/authContext';
 
+import Input from './components/Input';
+import Header from './components/Header';
+
 const App = () => {
-const { authActions } = useAuthContext();
+// const { authActions } = useAuthContext();
 
-const getToken = async () => {
-  const token = await fetchToken(tokenUrl);
-  authActions.setAuthToken(token.access_token);
-  //console.log(token.access_token); 
-}
+// const getToken = async () => {
+//   const token = await fetchToken(tokenUrl);
+//   authActions.setAuthToken(token.access_token);
+//   //console.log(token.access_token); 
+// }
 
-useEffect(() => {
-  getToken();
-}, [])
+// useEffect(() => {
+//   getToken();
+// }, [])
   return (
-    <>
       <AuthProvider>
-        
+        <Header />
       </AuthProvider>
-    </>
+
   );
 }
 

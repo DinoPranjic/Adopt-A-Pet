@@ -14,7 +14,7 @@ const useAuthContext = () => {
 }
 
 const AuthProvider = ({ children }: { children?: ReactNode }) => {
-  const [authToken, setAuthToken] = useState<string>("");
+  const [authToken, setAuthToken] = useState<string>('');
 
   const authState = {
     authToken

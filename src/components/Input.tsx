@@ -23,7 +23,7 @@ const InputButton = styled.button`
 `
 
 
-const options = [
+const distanceOptions = [
   { value: '31', label: '50km' },
   { value: '62', label: '100km' },
   { value: '155', label: '250km' }
@@ -32,7 +32,7 @@ const options = [
 
 const Input = () => {
   const [postalCode, setPostalCode] = useState<string>('');
-  const [distance, setDistance] = useState<SelectOptionType>(options[0]);
+  const [distance, setDistance] = useState<SelectOptionType>(distanceOptions[0]);
   const { authState } = useAuthContext();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +58,7 @@ const Input = () => {
         onChange={handleInputChange}
       >
       </InputField>
-      <Select options={options} defaultValue={options[0]} onChange={handleSelectChange}/>
+      <Select options={distanceOptions} defaultValue={distanceOptions[0]} onChange={handleSelectChange}/>
       <InputButton
         onClick={() => fetchAnimals(postalCode, authState.authToken, distance.value)}
       >

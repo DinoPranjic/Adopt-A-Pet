@@ -2,10 +2,11 @@ import styled from 'styled-components'
 import Select from 'react-select';
 
 import { useState } from "react";
-import { useEffect } from 'react';
 import { ChangeEvent } from "react";
 import { useAuthContext } from '../context/authContext';
+import { usePetContext } from '../context/petContext';
 import { fetchAnimals } from '../utils/fetchAnimals';
+import { useEffect } from 'react';
 
 import { SelectOptionType } from '../constants';
 
@@ -34,6 +35,12 @@ const Input = () => {
   const [postalCode, setPostalCode] = useState<string>('');
   const [distance, setDistance] = useState<SelectOptionType>(distanceOptions[0]);
   const { authState } = useAuthContext();
+  const { petActions } = usePetContext();
+  const { petState } = usePetContext();
+
+  useEffect(() => {
+    console.log(petState.pets);
+  }, [petState.pets])
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const formattedCode = e.target.value.slice(0, 3);
@@ -47,9 +54,25 @@ const Input = () => {
     //must check if option exists first, can't be null to set state
   };
 
-  useEffect(() => {
-    console.log(distance);
-  }, [distance]);
+  const setPets = async (postalCode: string, token: string, distance: string) => {
+    const data = await fetchAnimals(postalCode, token, distance);
+
+    data.map((animal: any) => {
+      const newPet = {
+        name: animal.name,
+        age: animal.age,
+        gender: animal.gender,
+        species: animal.species,
+        size: animal.size,
+        url: animal.url,
+        photoURL: animal.primary_photo_cropped.small,
+        email: animal.contact.email,
+        phone: animal.contact.phone
+      }
+
+      petActions.setPets(current => [...current ?? [], newPet])
+    })
+  }
 
   return(
     <InputContainer>
@@ -60,7 +83,7 @@ const Input = () => {
       </InputField>
       <Select options={distanceOptions} defaultValue={distanceOptions[0]} onChange={handleSelectChange}/>
       <InputButton
-        onClick={() => fetchAnimals(postalCode, authState.authToken, distance.value)}
+        onClick={() => setPets(postalCode, authState.authToken, distance.value)}
       >
         Go!
       </InputButton>

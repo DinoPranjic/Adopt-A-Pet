@@ -40,5 +40,5 @@ export {
   AuthProvider,
   AuthContext,
   useAuthContext
-}
+};
 

@@ -1,5 +1,4 @@
 import { useState, useContext, createContext, ReactNode } from 'react';
-
 import { IPetContext, Pet } from './petTypes';
 
 const PetContext = createContext<IPetContext | null>(null);
@@ -36,4 +35,10 @@ const PetProvider = ({ children }: { children?: ReactNode}) => {
       {children}
     </PetContext.Provider>
   )
-}
+};
+
+export {
+  PetProvider,
+  PetContext,
+  usePetContext
+};

@@ -1,21 +1,22 @@
 import './App.css';
-import { fetchToken } from './utils/fetchToken';
-import { useEffect } from 'react';
-import { tokenUrl } from './constants';
-import { AuthProvider } from './context/authContext';
-import { useAuthContext } from './context/authContext';
 
-import Input from './components/Input';
+import { AuthProvider } from './context/authContext';
+import { PetProvider } from './context/petContext';
+import { useEffect } from 'react';
+
+import { usePetContext } from './context/petContext';
+
 import Header from './components/Header';
 
 const App = () => {
 
   return (
       <AuthProvider>
-        <Header />
+        <PetProvider>
+          <Header />
+        </PetProvider>
       </AuthProvider>
-
   );
-}
+};
 
 export default App;

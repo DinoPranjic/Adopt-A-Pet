@@ -19,4 +19,4 @@ export interface IPetContext {
   petActions: {
     setPets: Dispatch<SetStateAction<Pet[] | null>>
   };
-}
+};

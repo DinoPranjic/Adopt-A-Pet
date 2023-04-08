@@ -1,7 +1,3 @@
-import styled from "styled-components";
-
-import { useAuthContext } from "../context/authContext";
-
 const fetchAnimals = async (postalCode: string, token: string, distance: string) => {
   const petResults = await fetch(
     `https://api.petfinder.com/v2/animals?location=${postalCode}&distance=${distance}&country=CA`,
@@ -15,7 +11,8 @@ const fetchAnimals = async (postalCode: string, token: string, distance: string)
       console.log(err);
     })
 
-    console.log(petResults.animals);
+
+    return petResults.animals;
 }
 
 export {

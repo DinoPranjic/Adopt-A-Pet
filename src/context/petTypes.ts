@@ -1,11 +1,22 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type Pet = {
-  name: string,
-  age: string,
-  gender: string,
-  species: string,
-  size: string,
-  url: string,
-  photoURL: string,
-  email: string,
-  phone: string
+  name: string | null,
+  age: string | null,
+  gender: string | null,
+  species: string | null,
+  size: string | null,
+  url: string | null,
+  photoURL: string | null,
+  email: string | null,
+  phone: string | null
 };
+
+export interface IPetContext {
+  petState: {
+    pets: Pet[] | null
+  };
+  petActions: {
+    setPets: Dispatch<SetStateAction<Pet[] | null>>
+  };
+}
